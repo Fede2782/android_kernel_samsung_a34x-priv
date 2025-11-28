@@ -60,7 +60,7 @@ jobs:
           echo "Linux Kernel ARM64 $KERNEL_VERSION" >> versions.txt
           echo "kernel_release=$KERNEL_VERSION" >> $GITHUB_ENV
 
-          export ASB_LEVEL="$(cat build_kernel.sh | grep ASB_SPL | tail | sed 's/^export ASB_SPL\=\"//' | sed 's/\"$//')"
+          export ASB_LEVEL="$(cat kernel-6.6/build.config.common | grep ASB_SPL | tail | sed 's/^ASB_SPL\=//')"
           echo "Merged $ASB_LEVEL android15-6.6 ASB Security Patch Level" >> versions.txt
           echo "asb_level=$ASB_LEVEL" >> $GITHUB_ENV
 
