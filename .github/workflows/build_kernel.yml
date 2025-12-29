@@ -101,6 +101,11 @@ jobs:
           name: kernel-image
           path: Image
 
+      - name: Upload tar artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: tar-file
+          path: ${{ env.tar_file_name }}.tar.md5
 
       - name: Upload release assets
         if: github.event.inputs.release
