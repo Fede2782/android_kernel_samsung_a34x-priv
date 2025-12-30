@@ -62,12 +62,3 @@ export SEC_BUILDNUMBER="ogkiA346BXXUBEYI7"
 
 chmod +x ./kernel_device_modules-6.6/build.sh
 ./kernel_device_modules-6.6/build.sh
-
-cd ..
-wget -O boot.img https://github.com/Fede2782/proprietary_vendor_samsung_a34x/releases/latest/download/boot.img
-mkdir bootimg && cd bootimg
-magiskboot unpack ../boot.img
-cp ../out/target/product/a34x/obj/KLEAF_OBJ/dist/kernel_device_modules-6.6/mgk_64_k66_kernel_aarch64.user/Image kernel
-PATCHVBMETAFLAG=true magiskboot repack ../boot.img out-boot.img
-mv out-boot.img ../boot.img
-cd ..
