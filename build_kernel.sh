@@ -5,12 +5,6 @@ export PATH="$(pwd)/bin:$PATH"
 
 sudo apt-get install curl wget -y
 
-APK_URL="$(curl -s "https://api.github.com/repos/topjohnwu/Magisk/releases/latest" | grep -oE 'https://[^\"]+\.apk')"
-wget -O "magisk.zip" "$APK_URL"
-unzip "magisk.zip" "lib/x86_64/libmagiskboot.so"
-cp "lib/x86_64/libmagiskboot.so" "bin/magiskboot"
-chmod +x "bin/magiskboot"
-
 curl https://storage.googleapis.com/git-repo-downloads/repo > bin/repo
 chmod a+x bin/repo
 
