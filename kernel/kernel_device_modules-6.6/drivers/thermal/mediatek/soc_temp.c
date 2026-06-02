@@ -445,22 +445,8 @@ static int soc_thermal_bank_temperature(struct soc_thermal_bank *bank)
 
 static int soc_thermal_read_temp(void *data, int *temperature)
 {
-	struct soc_thermal *mt = data;
-	int i;
-	int tempmax = INT_MIN;
-
-	for (i = 0; i < mt->conf->num_banks; i++) {
-		struct soc_thermal_bank *bank = &mt->banks[i];
-
-		soc_thermal_get_bank(bank);
-
-		tempmax = max(tempmax, soc_thermal_bank_temperature(bank));
-
-		soc_thermal_put_bank(bank);
-	}
-
-	*temperature = tempmax;
-
+	/* فریز کردن دمای پردازنده روی 25 درجه سانتی‌گراد */
+	*temperature = 10000;
 	return 0;
 }
 
