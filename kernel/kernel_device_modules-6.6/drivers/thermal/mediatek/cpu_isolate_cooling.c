@@ -42,22 +42,7 @@ static int cpu_isolate_get_cur_state(struct thermal_cooling_device *cdev, unsign
 
 static int cpu_isolate_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
 {
-	struct cpu_isolate_cooling_device *dev = cdev->devdata;
-	int ret;
-
-	if (state > dev->max_state)
-		return -EINVAL;
-
-	dev->cur_state = state;
-
-	if (state == 1)
-		ret = core_ctl_force_pause_cpu(dev->cpu_id, true);
-	else
-		ret = core_ctl_force_pause_cpu(dev->cpu_id, false);
-
-	if (ret != 0)
-		pr_info("%s:%d set cpu%d iso %lu error %d\n", __func__, __LINE__, dev->cpu_id, state, ret);
-
+	/* فریز کردن محدودیت و جلوگیری از خاموش شدن هسته های پردازنده */
 	return 0;
 }
 
