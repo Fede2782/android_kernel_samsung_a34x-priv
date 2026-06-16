@@ -17,17 +17,10 @@ jobs:
     steps:
       # 1. Checkout repository with submodules (shallow clone)
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: true
           fetch-depth: 1
-
-      - name: Cleanup space
-        run: |
-          sudo apt-get remove --purge -y "php*" "dotnet*" "mysql*" "nodejs*" "clang*" "google*"
-          sudo apt-get autoremove -y
-          sudo apt-get clean
-          sudo rm -rf /usr/local
 
       # 2. Run your custom bash script
       - name: Run build script
@@ -95,26 +88,26 @@ jobs:
           echo "tar_file_name=$FILE_NAME" >> $GITHUB_ENV
 
       - name: Upload dist artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: dist-dir
           path: dist
 
       - name: Upload Image artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: kernel-image
           path: Image
 
       - name: Upload Image artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: boot-image
           path: boot.img
 
       - name: Upload release assets
         if: github.event.inputs.release
-        uses: softprops/action-gh-release@v2.4.2
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
