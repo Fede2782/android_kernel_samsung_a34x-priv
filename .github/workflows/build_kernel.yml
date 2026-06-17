@@ -79,7 +79,7 @@ jobs:
           export SUBLEVEL="$(cat kernel-6.6/Makefile | grep 'SUBLEVEL = ' | head -n 1 | sed 's/SUBLEVEL = //')"
           export KERNEL_VERSION="$VERSION.$PATCHLEVEL.$SUBLEVEL"
           export OSRC_RELEASE="$(cat build_kernel.sh | grep SEC_BUILDNUMBER | tail | sed 's/^export SEC_BUILDNUMBER\=\"//' | sed 's/\"$//' | sed 's/ogki//')"
-          export FILE_NAME="a34x_${KERNEL_VERSION}-$(grep 'BRANCH=' kernel-6.6/build.config.common)-$(grep 'KMI_GENERATION=' kernel-6.6/build.config.common)_${OSRC_RELEASE}"
+          export FILE_NAME="a34x_${KERNEL_VERSION}-$(grep 'BRANCH=' kernel-6.6/build.config.common | sed 's/BRANCH=//' )-$(grep 'KMI_GENERATION=' kernel-6.6/build.config.common | sed 's/KMI_GENERATION=//' )_${OSRC_RELEASE}"
           lz4 -B6 --content-size -q boot.img boot.img.lz4
           tar cvf "$FILE_NAME.tar" boot.img.lz4
           CHECKSUM="$(md5sum "$FILE_NAME.tar" | cut -d " " -f 1 | sed 's/ //')"
