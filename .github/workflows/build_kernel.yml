@@ -22,6 +22,14 @@ jobs:
           submodules: true
           fetch-depth: 1
 
+      - name: Cleanup space
+        run: |
+          sudo apt-get remove --purge -y "php*" "dotnet*" "mysql*" "nodejs*" "clang*" "google*"
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          sudo rm -rf /usr/local
+
+
       # 2. Run your custom bash script
       - name: Run build script
         run: |
