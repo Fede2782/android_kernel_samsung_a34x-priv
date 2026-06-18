@@ -130,5 +130,5 @@ jobs:
             kernel_config
             build_info.txt
             boot.img
-            "${{ env.tar_file_name }}.tar.md5"
+            ${{ env.tar_file_name }}.tar.md5
 
