@@ -80,7 +80,7 @@ jobs:
 
       - name: Build boot image tar
         run: |
-          export FILE_NAME="a34x_${{ env.kernel_release }}_${{ env.osrc_release }}"
+          export FILE_NAME="a34x_${{ env.kernel_release }}_${{ env.asb_level }}_${{ env.osrc_release }}"
           lz4 -B6 --content-size -q boot.img boot.img.lz4
           tar cvf "$FILE_NAME.tar" boot.img.lz4
           export CHECKSUM="$(md5sum "$FILE_NAME.tar" | cut -d " " -f 1 | sed 's/ //')"
