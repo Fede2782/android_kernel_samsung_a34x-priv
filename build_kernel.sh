@@ -15,6 +15,7 @@ cd prebuilts/clang/host/linux-x86
 wget -O clang-r584948c.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main-kernel-2026/clang-r584948c.tar.gz
 mkdir clang-r584948c; cd clang-r584948c
 tar xvzf ../clang-r584948c.tar.gz
+sed -i '/"bin\/llvm-ar",/a\    "bin/llvm-strings",' BUILD.bazel
 rm ../clang-r584948c.tar.gz
 cd ..
 cd kleaf
